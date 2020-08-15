@@ -22,6 +22,7 @@ abstract class BaseActivity : MvpAppCompatActivity(), FragmentManager.OnBackStac
         navigator = SupportAppNavigator(this, -1)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         CiceroneApplication.instance.getAppComponent().inject(this)
         super.onCreate(savedInstanceState)
