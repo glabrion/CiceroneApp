@@ -7,14 +7,20 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_details.*
 import ru.glabrion.ciceroneapp.R
 import ru.glabrion.ciceroneapp.Screens
+import ru.glabrion.ciceroneapp.common.AppConst.ALBUM_ID_KEY
 import ru.glabrion.ciceroneapp.ui.base.BaseFragment
 
-class DetailsFragment: BaseFragment() {
+class DetailsFragment : BaseFragment() {
     companion object {
-        fun getNewInstance(): DetailsFragment {
-            return DetailsFragment()
+        fun getNewInstance(id: Int?): DetailsFragment {
+            val detailsFragment = DetailsFragment()
+            val bundle = Bundle()
+            bundle.putInt(ALBUM_ID_KEY, id ?: 0)
+            detailsFragment.arguments = bundle
+            return detailsFragment
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
