@@ -79,6 +79,9 @@ dependencies {
 
     //coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
 
 kapt {

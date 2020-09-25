@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CiceroneApp</string>
+    <string name="to_general_screen">to general screen</string>
+    <string name="description_text">This album has %d photos</string>
 </resources>

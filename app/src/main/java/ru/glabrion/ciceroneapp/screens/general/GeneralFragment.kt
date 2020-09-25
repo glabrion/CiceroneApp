@@ -38,6 +38,9 @@ class GeneralFragment: BaseFragment(), GeneralView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        view.swipe_container?.setOnRefreshListener {
+            router.newRootScreen(Screens.GeneralScreen())
+        }
         view.albums_rv?.layoutManager = LinearLayoutManager(view.context)
         view.albums_rv?.adapter = albumsAdapter
         view.albums_rv?.addItemDecoration(SimpleDividerItemDecoration(context))

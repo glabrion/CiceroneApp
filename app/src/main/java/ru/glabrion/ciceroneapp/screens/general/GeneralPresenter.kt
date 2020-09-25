@@ -13,7 +13,7 @@ class GeneralPresenter(): BasePresenter<GeneralView>(), CoroutineScope {
         get() = job + Dispatchers.IO
 
     fun showAlbums() {
-        var albums = mutableListOf<Album>()
+        var albums: MutableList<Album>
         launch {
             albums = withContext(coroutineContext){
                 apiService.getAlbums().await()
