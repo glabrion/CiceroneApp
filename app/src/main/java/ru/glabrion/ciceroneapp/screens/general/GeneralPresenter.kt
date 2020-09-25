@@ -18,7 +18,7 @@ class GeneralPresenter() : BasePresenter<GeneralView>(), CoroutineScope {
         launch {
             try {
                 albums = withContext(coroutineContext) {
-                    apiService.getAlbums().await()
+                    apiService.getAlbums()
                 }
                 withContext(Dispatchers.Main) {
                     viewState.showAlbums(albums)

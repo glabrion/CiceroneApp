@@ -1,15 +1,14 @@
 package ru.glabrion.ciceroneapp.model.network
 
-import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface Api {
     @GET("albums")
-    fun getAlbums(): Deferred<MutableList<Album>>
+    suspend fun getAlbums(): MutableList<Album>
 
     @GET("photos")
-    fun getPhotosByAlbumId(
+    suspend fun getPhotosByAlbumId(
         @Query("albumId") albumId: Int?
-    ): Deferred<MutableList<Photo>>
+    ): MutableList<Photo>
 }

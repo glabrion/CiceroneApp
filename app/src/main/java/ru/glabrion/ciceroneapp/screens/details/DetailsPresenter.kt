@@ -19,7 +19,7 @@ class DetailsPresenter : BasePresenter<DetailsView>(), CoroutineScope {
         launch {
             try {
                 val photos =
-                    withContext(coroutineContext) { apiService.getPhotosByAlbumId(albumId).await() }
+                    withContext(coroutineContext) { apiService.getPhotosByAlbumId(albumId) }
                 launch(Dispatchers.Main) {
                     viewState.setData(photos)
                 }
