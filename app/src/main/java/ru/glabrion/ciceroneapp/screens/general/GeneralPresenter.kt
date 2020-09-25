@@ -4,9 +4,10 @@ import kotlinx.coroutines.*
 import ru.glabrion.ciceroneapp.CiceroneApplication
 import ru.glabrion.ciceroneapp.model.network.Album
 import ru.glabrion.ciceroneapp.ui.base.BasePresenter
+import java.lang.Exception
 import kotlin.coroutines.CoroutineContext
 
-class GeneralPresenter(): BasePresenter<GeneralView>(), CoroutineScope {
+class GeneralPresenter() : BasePresenter<GeneralView>(), CoroutineScope {
 
     private val job = Job()
     override val coroutineContext: CoroutineContext
@@ -15,11 +16,15 @@ class GeneralPresenter(): BasePresenter<GeneralView>(), CoroutineScope {
     fun showAlbums() {
         var albums: MutableList<Album>
         launch {
-            albums = withContext(coroutineContext){
-                apiService.getAlbums().await()
-            }
-            withContext(Dispatchers.Main){
-                viewState.showAlbums(albums)
+            try {
+                albums = withContext(coroutineContext) {
+                    apiService.getAlbums().await()
+                }
+                withContext(Dispatchers.Main) {
+                    viewState.showAlbums(albums)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }
