@@ -29,10 +29,6 @@ class GeneralPresenter() : BasePresenter<GeneralView>(), CoroutineScope {
         }
     }
 
-    fun onAlbumClick(id: Int?) {
-        viewState.openAlbumDetails(id)
-    }
-
     override fun injectDependency() {
         CiceroneApplication.instance.getAppComponent().inject(this)
     }

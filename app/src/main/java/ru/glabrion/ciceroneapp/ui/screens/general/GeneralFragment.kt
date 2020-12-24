@@ -25,7 +25,7 @@ class GeneralFragment : BaseFragment(), GeneralView {
     lateinit var presenter: GeneralPresenter
 
     private var albumsAdapter =
-        AlbumsAdapter { album: Album -> presenter.onAlbumClick(album.id) }
+        AlbumsAdapter { album: Album -> router.navigateTo(Screens.DetailsScreen(album.id)) }
 
 
     override fun onCreateView(
@@ -54,9 +54,5 @@ class GeneralFragment : BaseFragment(), GeneralView {
 
     override fun showAlbums(album: List<Album>) {
         albumsAdapter.setData(album)
-    }
-
-    override fun openAlbumDetails(id: Int?) {
-        router.navigateTo(Screens.DetailsScreen(id))
     }
 }
