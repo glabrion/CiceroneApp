@@ -1,4 +1,4 @@
-package ru.glabrion.ciceroneapp.screens.details
+package ru.glabrion.ciceroneapp.ui.screens.details
 
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType

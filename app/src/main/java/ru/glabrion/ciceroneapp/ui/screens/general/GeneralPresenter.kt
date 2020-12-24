@@ -1,4 +1,4 @@
-package ru.glabrion.ciceroneapp.screens.general
+package ru.glabrion.ciceroneapp.ui.screens.general
 
 import kotlinx.coroutines.*
 import ru.glabrion.ciceroneapp.CiceroneApplication
@@ -29,7 +29,11 @@ class GeneralPresenter() : BasePresenter<GeneralView>(), CoroutineScope {
         }
     }
 
-    fun init() {
+    fun onAlbumClick(id: Int?) {
+        viewState.openAlbumDetails(id)
+    }
+
+    override fun injectDependency() {
         CiceroneApplication.instance.getAppComponent().inject(this)
     }
 }

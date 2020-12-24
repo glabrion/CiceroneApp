@@ -1,4 +1,4 @@
-package ru.glabrion.ciceroneapp.screens.details
+package ru.glabrion.ciceroneapp.ui.screens.details
 
 import kotlinx.coroutines.*
 import moxy.InjectViewState
@@ -29,8 +29,12 @@ class DetailsPresenter : BasePresenter<DetailsView>(), CoroutineScope {
         }
     }
 
-    fun init() {
+    override fun injectDependency() {
         CiceroneApplication.instance.getAppComponent().inject(this)
+    }
+
+    fun backPressed() {
+        router.exit()
     }
 
 }

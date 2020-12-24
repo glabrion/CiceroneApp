@@ -8,6 +8,5 @@ fun getProgressBar(context: Context): CircularProgressDrawable {
     circularProgressDrawable.strokeWidth = 5f
     circularProgressDrawable.centerRadius = 30f
     circularProgressDrawable.start()
-
     return circularProgressDrawable
 }

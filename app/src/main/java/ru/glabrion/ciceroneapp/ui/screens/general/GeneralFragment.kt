@@ -1,4 +1,4 @@
-package ru.glabrion.ciceroneapp.screens.general
+package ru.glabrion.ciceroneapp.ui.screens.general
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,8 @@ import ru.glabrion.ciceroneapp.common.SimpleDividerItemDecoration
 import ru.glabrion.ciceroneapp.model.network.Album
 import ru.glabrion.ciceroneapp.ui.base.BaseFragment
 
-class GeneralFragment: BaseFragment(), GeneralView {
+class GeneralFragment : BaseFragment(), GeneralView {
+
     companion object {
         fun getNewInstance(): GeneralFragment {
             return GeneralFragment()
@@ -24,7 +25,7 @@ class GeneralFragment: BaseFragment(), GeneralView {
     lateinit var presenter: GeneralPresenter
 
     private var albumsAdapter =
-        AlbumsAdapter { album: Album -> router.navigateTo(Screens.DetailsScreen(album.id)) }
+        AlbumsAdapter { album: Album -> presenter.onAlbumClick(album.id) }
 
 
     override fun onCreateView(
@@ -32,8 +33,12 @@ class GeneralFragment: BaseFragment(), GeneralView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        presenter.init()
+        super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_general, container, false)
+    }
+
+    override fun injectDependency() {
+        presenter.injectDependency()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,5 +54,9 @@ class GeneralFragment: BaseFragment(), GeneralView {
 
     override fun showAlbums(album: List<Album>) {
         albumsAdapter.setData(album)
+    }
+
+    override fun openAlbumDetails(id: Int?) {
+        router.navigateTo(Screens.DetailsScreen(id))
     }
 }

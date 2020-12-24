@@ -11,4 +11,6 @@ abstract class BasePresenter<View: BaseView> : MvpPresenter<View>() {
 
     @Inject
     protected lateinit var apiService: Api
+
+    abstract fun injectDependency()
 }

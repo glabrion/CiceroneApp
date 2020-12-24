@@ -1,4 +1,4 @@
-package ru.glabrion.ciceroneapp.screens.details
+package ru.glabrion.ciceroneapp.ui.screens.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,10 +10,11 @@ import moxy.presenter.InjectPresenter
 import ru.glabrion.ciceroneapp.R
 import ru.glabrion.ciceroneapp.Screens
 import ru.glabrion.ciceroneapp.common.AppConst.ALBUM_ID_KEY
+import ru.glabrion.ciceroneapp.common.BackButtonListener
 import ru.glabrion.ciceroneapp.model.network.Photo
 import ru.glabrion.ciceroneapp.ui.base.BaseFragment
 
-class DetailsFragment : BaseFragment(), DetailsView {
+class DetailsFragment : BaseFragment(), DetailsView, BackButtonListener {
 
     @InjectPresenter
     lateinit var presenter: DetailsPresenter
@@ -35,8 +36,14 @@ class DetailsFragment : BaseFragment(), DetailsView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_details, container, false)
     }
+
+    override fun injectDependency() {
+        presenter.injectDependency()
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,11 +51,15 @@ class DetailsFragment : BaseFragment(), DetailsView {
         view.photos_rv?.layoutManager = GridLayoutManager(view.context, 2)
         view.photos_rv?.adapter = albumAdapter
         view.swipe_container.setOnRefreshListener {router.navigateTo(Screens.DetailsScreen(albumId))}
-        presenter.init()
         presenter.showAlbum(albumId)
     }
 
     override fun setData(photos: MutableList<Photo>) {
         albumAdapter.setData(photos)
+    }
+
+    override fun onBackPressed(): Boolean {
+        presenter.backPressed()
+        return true
     }
 }

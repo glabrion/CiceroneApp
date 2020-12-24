@@ -1,4 +1,4 @@
-package ru.glabrion.ciceroneapp.screens.general
+package ru.glabrion.ciceroneapp.ui.screens.general
 
 import android.view.LayoutInflater
 import android.view.View
