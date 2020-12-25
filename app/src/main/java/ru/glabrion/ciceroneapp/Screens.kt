@@ -12,9 +12,9 @@ class Screens {
         }
     }
 
-    class DetailsScreen(private val id: Int?) : SupportAppScreen() {
+    class DetailsScreen(private val id: Int?, private val title: String?) : SupportAppScreen() {
         override fun getFragment(): Fragment {
-            return DetailsFragment.getNewInstance(id)
+            return DetailsFragment.getNewInstance(id, title)
         }
     }
 }
