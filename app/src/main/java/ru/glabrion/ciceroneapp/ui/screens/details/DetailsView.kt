@@ -8,4 +8,5 @@ import ru.glabrion.ciceroneapp.ui.base.BaseView
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface DetailsView: BaseView {
     fun setData(photos: MutableList<Photo>)
+    fun showError()
 }

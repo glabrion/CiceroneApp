@@ -10,23 +10,23 @@ import ru.terrakok.cicerone.android.support.SupportAppNavigator
 
 class MainActivity : BaseActivity() {
 
-    override var navigator = SupportAppNavigator(this, R.id.main_container)
+  override var navigator = SupportAppNavigator(this, R.id.main_container)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        if (savedInstanceState == null) {
-            router.newRootScreen(Screens.GeneralScreen())
-        }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+    if (savedInstanceState == null) {
+      router.newRootScreen(Screens.GeneralScreen())
     }
+  }
 
-    override fun onBackPressed() {
-        val fragment = supportFragmentManager.findFragmentById(R.id.main_container)
-        if (fragment != null && fragment is BackButtonListener
-            && (fragment as BackButtonListener).onBackPressed()) {
-            return
-        } else {
-            super.onBackPressed()
-        }
+  override fun onBackPressed() {
+    val fragment = supportFragmentManager.findFragmentById(R.id.main_container)
+    if (fragment != null && fragment is BackButtonListener
+        && (fragment as BackButtonListener).onBackPressed()) {
+      return
+    } else {
+      super.onBackPressed()
     }
+  }
 }

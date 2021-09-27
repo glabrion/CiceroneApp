@@ -9,27 +9,30 @@ import kotlin.coroutines.CoroutineContext
 
 class GeneralPresenter() : BasePresenter<GeneralView>(), CoroutineScope {
 
-    private val job = Job()
-    override val coroutineContext: CoroutineContext
-        get() = job + Dispatchers.IO
+  private val job = Job()
+  override val coroutineContext: CoroutineContext
+    get() = job + Dispatchers.IO
 
-    fun showAlbums() {
-        var albums: MutableList<Album>
-        launch {
-            try {
-                albums = withContext(coroutineContext) {
-                    apiService.getAlbums()
-                }
-                withContext(Dispatchers.Main) {
-                    viewState.showAlbums(albums)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+  fun showAlbums() {
+    var albums: MutableList<Album>
+    launch {
+      try {
+        albums = withContext(coroutineContext) {
+          apiService.getAlbums()
         }
+        launch(Dispatchers.Main) {
+          viewState.showAlbums(albums)
+        }
+      } catch (e: Exception) {
+        e.printStackTrace()
+        launch(Dispatchers.Main) {
+          viewState.showError()
+        }
+      }
     }
+  }
 
-    override fun injectDependency() {
-        CiceroneApplication.instance.getAppComponent().inject(this)
-    }
+  override fun injectDependency() {
+    CiceroneApplication.instance.getAppComponent().inject(this)
+  }
 }

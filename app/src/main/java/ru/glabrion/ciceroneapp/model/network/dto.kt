@@ -1,15 +1,5 @@
 package ru.glabrion.ciceroneapp.model.network
 
-class Album(
-    val userId: Int? = 0,
-    val id: Int? = 0,
-    val title: String? = ""
-)
+class Album(val id: Int? = 0, val title: String? = "")
 
-class Photo(
-    var albumId: Int? = 0,
-    var id: Int? = 0,
-    var title: String? = "",
-    var url: String? = "",
-    var thumbnailUrl: String? = ""
-)
+class Photo(var id: Int? = 0, var url: String? = "")

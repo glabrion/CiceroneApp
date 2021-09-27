@@ -8,4 +8,5 @@ import ru.glabrion.ciceroneapp.ui.base.BaseView
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface GeneralView: BaseView {
     fun showAlbums(album: List<Album>)
+    fun showError()
 }

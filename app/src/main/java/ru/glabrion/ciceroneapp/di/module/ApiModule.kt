@@ -30,7 +30,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideRestAdapter(okHttpClient: OkHttpClient) =
+    fun provideRestAdapter(okHttpClient: OkHttpClient): Api =
         Retrofit.Builder()
             .baseUrl(API_URL)
             .client(okHttpClient)
